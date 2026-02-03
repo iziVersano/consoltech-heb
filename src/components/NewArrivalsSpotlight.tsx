@@ -82,7 +82,7 @@ const NewArrivalsSpotlight = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <div className="w-full max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-center gap-2 mb-6">
         <Sparkles className="w-6 h-6 text-primary animate-pulse" />

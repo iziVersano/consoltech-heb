@@ -38,7 +38,7 @@ const Hero = () => {
           alt="High-tech electronics and gaming devices"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-white/20 to-transparent"></div>
       </div>
 
       {/* Futuristic Tech Elements */}
