@@ -85,61 +85,34 @@ const NewArrivalsSpotlight = () => {
       {/* Main Spotlight Container - Clickable */}
       <Link
         to="/products?category=New+Arrivals"
-        className="block relative bg-background/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-primary/30 hover:border-primary/60 transition-all duration-500 shadow-2xl shadow-primary/20 cursor-pointer"
+        className="block relative rounded-2xl overflow-hidden border border-primary/30 hover:border-primary/60 transition-all duration-500 shadow-2xl shadow-primary/20 cursor-pointer"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
-        {/* Product Display */}
-        <div className="flex flex-col md:flex-row">
-          {/* Product Image - Large */}
-          <div className="relative flex-1 h-72 md:h-[420px] overflow-hidden">
-            <img
-              src={getImageUrl(currentProduct.imageUrl)}
-              alt={currentProduct.title}
-              className="w-full h-full object-contain p-4 transition-transform duration-700 hover:scale-105"
-            />
+        {/* Full Image Container */}
+        <div className="relative h-80 md:h-[450px]">
+          {/* Product Image - Full Size with rounded corners */}
+          <img
+            src={getImageUrl(currentProduct.imageUrl)}
+            alt={currentProduct.title}
+            className="w-full h-full object-cover rounded-2xl transition-transform duration-700 hover:scale-105"
+          />
 
-            {/* Navigation Arrows */}
-            {newArrivals.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    goToPrevious();
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  aria-label="Previous product"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    goToNext();
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  aria-label="Next product"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </>
-            )}
-          </div>
+          {/* Gradient Overlay for Text */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-2xl" />
 
-          {/* Product Info - Side Panel */}
-          <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          {/* Product Info - Overlay at Bottom */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-lg">
               {getTranslatedTitle(currentProduct)}
             </h3>
-            <p className="text-muted-foreground line-clamp-3">
+            <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto line-clamp-2 drop-shadow-md">
               {getTranslatedDescription(currentProduct)}
             </p>
 
             {/* Dots Indicator */}
             {newArrivals.length > 1 && (
-              <div className="flex justify-center gap-3 mt-6">
+              <div className="flex justify-center gap-3 mt-4">
                 {newArrivals.map((_, index) => (
                   <button
                     key={index}
@@ -151,7 +124,7 @@ const NewArrivalsSpotlight = () => {
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       index === currentIndex
                         ? 'bg-primary w-8'
-                        : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                        : 'bg-white/40 hover:bg-white/60'
                     }`}
                     aria-label={`Go to product ${index + 1}`}
                   />
@@ -159,14 +132,42 @@ const NewArrivalsSpotlight = () => {
               </div>
             )}
           </div>
+
+          {/* Navigation Arrows */}
+          {newArrivals.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  goToPrevious();
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-white"
+                aria-label="Previous product"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  goToNext();
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-white"
+                aria-label="Next product"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Auto-play progress bar */}
         {isAutoPlaying && newArrivals.length > 1 && (
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/20">
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/20 rounded-b-2xl">
             <div
               key={currentIndex}
-              className="h-full bg-primary animate-progress"
+              className="h-full bg-primary animate-progress rounded-b-2xl"
               style={{ animationDuration: '5s' }}
             />
           </div>
