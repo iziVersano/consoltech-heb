@@ -5,7 +5,7 @@ import PartnerBrands from '@/components/PartnerBrands';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowRight, Globe, Shield, Zap, HeartHandshake, UserPlus, Search, Check } from 'lucide-react';
+import { ArrowRight, Gamepad2, Headphones, Shield, BadgeDollarSign, UserPlus, Search, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useI18n } from '@/hooks/I18nContext';
@@ -15,22 +15,22 @@ const Index = () => {
 
   const features = [
     {
-      icon: Globe,
+      icon: Gamepad2,
       title: t('index.features.globalDistribution.title'),
       description: t('index.features.globalDistribution.description')
     },
     {
-      icon: Shield,
+      icon: Headphones,
       title: t('index.features.qualityAssurance.title'),
       description: t('index.features.qualityAssurance.description')
     },
     {
-      icon: Zap,
+      icon: Shield,
       title: t('index.features.latestTechnology.title'),
       description: t('index.features.latestTechnology.description')
     },
     {
-      icon: HeartHandshake,
+      icon: BadgeDollarSign,
       title: t('index.features.trustedPartnerships.title'),
       description: t('index.features.trustedPartnerships.description')
     }

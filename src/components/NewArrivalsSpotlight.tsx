@@ -72,7 +72,7 @@ const NewArrivalsSpotlight = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-center gap-2 mb-6">
         <Sparkles className="w-6 h-6 text-primary animate-pulse" />
@@ -85,18 +85,18 @@ const NewArrivalsSpotlight = () => {
       {/* Main Spotlight Container - Clickable */}
       <Link
         to="/products?category=New+Arrivals"
-        className="block relative bg-card/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-500 shadow-2xl shadow-primary/20 cursor-pointer"
+        className="block relative bg-background/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-primary/30 hover:border-primary/60 transition-all duration-500 shadow-2xl shadow-primary/20 cursor-pointer"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
         {/* Product Display */}
         <div className="flex flex-col md:flex-row">
           {/* Product Image - Large */}
-          <div className="relative flex-1 h-64 md:h-96 overflow-hidden bg-gradient-to-br from-card to-background">
+          <div className="relative flex-1 h-72 md:h-[420px] overflow-hidden">
             <img
               src={getImageUrl(currentProduct.imageUrl)}
               alt={currentProduct.title}
-              className="w-full h-full object-contain p-8 transition-transform duration-700 hover:scale-105"
+              className="w-full h-full object-contain p-4 transition-transform duration-700 hover:scale-105"
             />
 
             {/* Navigation Arrows */}
@@ -129,7 +129,7 @@ const NewArrivalsSpotlight = () => {
           </div>
 
           {/* Product Info - Side Panel */}
-          <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-gradient-to-br from-background/50 to-card/50">
+          <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
               {getTranslatedTitle(currentProduct)}
             </h3>
@@ -193,7 +193,7 @@ const NewArrivalsSpotlight = () => {
               <img
                 src={getImageUrl(product.imageUrl)}
                 alt={product.title}
-                className="w-full h-full object-contain bg-card p-2"
+                className="w-full h-full object-contain bg-background/50 p-2"
               />
             </button>
           ))}
