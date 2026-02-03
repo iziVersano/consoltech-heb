@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Accessibility } from 'lucide-react';
+import { Accessibility, Gamepad2 } from 'lucide-react';
 import { useI18n } from '@/hooks/I18nContext';
 
 const Footer = () => {
@@ -9,11 +9,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center" aria-hidden="true">
-                <span className="text-white font-bold text-sm">C</span>
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <Gamepad2 className="h-8 w-8 text-primary" aria-hidden="true" />
               </div>
-              <span className="text-2xl font-bold gradient-text">CONSOLTECH</span>
+              <span className="logo-text text-2xl md:text-3xl">
+                <span className="text-gray-900">CONSOL</span><span className="text-primary">TECH</span>
+              </span>
             </div>
             <p className="text-muted-foreground">
               {t('footer.description')}

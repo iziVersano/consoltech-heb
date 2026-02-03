@@ -130,12 +130,12 @@ const NewArrivalsSpotlight = () => {
             </div>
           )}
 
-          {/* Frosted Glass Bar */}
-          <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 border-t border-white/10 rounded-b-2xl py-3 px-4 text-center">
-            <h3 className="text-lg md:text-xl font-bold text-white">
+          {/* Text Overlay Bar */}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent rounded-b-2xl py-5 px-4 text-center">
+            <h3 className="text-xl md:text-2xl font-bold text-white">
               {getTranslatedTitle(currentProduct)}
             </h3>
-            <p className="text-white/80 text-xs md:text-sm max-w-2xl mx-auto line-clamp-1">
+            <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto line-clamp-1">
               {getTranslatedDescription(currentProduct)}
             </p>
           </div>

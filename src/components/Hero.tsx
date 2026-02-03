@@ -38,11 +38,13 @@ const Hero = () => {
           alt="High-tech electronics and gaming devices"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-white/20 to-transparent"></div>
       </div>
 
+      {/* Bright gradient overlay to fade the background */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-br from-white/90 via-white/80 to-cyan-50/70 pointer-events-none"></div>
+
       {/* Futuristic Tech Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-[2]">
         {/* Grid Pattern */}
         <div className="tech-grid"></div>
 
@@ -113,18 +115,18 @@ const Hero = () => {
           </div>
 
           {/* Main Headline */}
-          <div className="space-y-2">
+          <div className="space-y-4">
             <h1 className="text-center text-2xl md:text-3xl lg:text-4xl leading-tight font-bold">
-              <span className="block text-2xl md:text-3xl lg:text-5xl font-black mb-1 leading-tight">
-                {t('hero.headline1', 'Your Gateway to Gaming, Gadgets & ')}<span className="gradient-text">{t('hero.innovation', 'Innovation')}</span>
+              <span className="block text-2xl md:text-3xl lg:text-5xl font-black mb-2 leading-tight text-gray-900 drop-shadow-sm">
+                {t('hero.headline1')}<span className="text-primary">{t('hero.innovation')}</span>
               </span>
-              <span className="block text-foreground text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
-                {t('hero.headline2', 'Delivering Smart Tech & ')}<span className="text-accent text-glow">{t('hero.toys', 'Toys')}</span>{t('hero.headline2b', ' to the World')}
+              <span className="block text-gray-800 text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
+                {t('hero.headline2')}<span className="text-accent font-extrabold">{t('hero.toys')}</span>{t('hero.headline2b')}
               </span>
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-normal">
-              {t('hero.desc', 'Your premier partner for cutting-edge technology distribution worldwide. From gaming consoles to smart devices, we bring innovation to your doorstep.')}
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-800 max-w-3xl mx-auto leading-relaxed font-semibold">
+              {t('hero.desc')}
             </p>
           </div>
 
