@@ -4,6 +4,7 @@
 export const featureFlags = {
   // Hero Section Features
   HERO_NEW_ARRIVALS_SPOTLIGHT: true,  // Rotating product spotlight in hero section
+  HERO_GRADIENT_BACKGROUND: false,  // Show gradient background in hero section
 
   // Future flags can be added here
   // HERO_VIDEO_BACKGROUND: false,

@@ -22,7 +22,7 @@ const Hero = () => {
       {/* Background Image with LQIP */}
       <div className="absolute inset-0 z-0">
         {/* Instant placeholder with tech-themed gradient */}
-        <div 
+        <div
           className={`absolute inset-0 transition-opacity duration-500 ease-out ${
             imageLoaded ? 'opacity-0' : 'opacity-100'
           }`}
@@ -30,7 +30,7 @@ const Hero = () => {
             background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)',
           }}
         />
-        
+
         {/* High Quality Image */}
         {/* High Quality Image */}
         <img
@@ -45,29 +45,29 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Grid Pattern */}
         <div className="tech-grid"></div>
-        
+
         {/* Holographic Rings */}
         <div className="absolute top-1/4 right-1/4 w-32 h-32 md:w-48 md:h-48">
           <div className="holographic-ring ring-1"></div>
           <div className="holographic-ring ring-2"></div>
         </div>
-        
+
         <div className="absolute bottom-1/3 left-1/4 w-24 h-24 md:w-36 md:h-36">
           <div className="holographic-ring ring-3"></div>
           <div className="holographic-ring ring-4"></div>
         </div>
-        
+
         <div className="absolute top-1/2 left-3/4 w-20 h-20 md:w-28 md:h-28">
           <div className="holographic-ring ring-5"></div>
         </div>
-        
+
         {/* Animated Tech Lines */}
         <div className="tech-lines">
           <div className="tech-line line-1"></div>
           <div className="tech-line line-2"></div>
           <div className="tech-line line-3"></div>
         </div>
-        
+
         {/* Floating Tech Particles */}
         <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-accent rounded-full opacity-60 animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-primary rounded-full opacity-40 animate-pulse-slower"></div>
@@ -111,7 +111,7 @@ const Hero = () => {
               </>
             )}
           </div>
-          
+
           {/* Main Headline */}
           <div className="space-y-2">
             <h1 className="text-center text-2xl md:text-3xl lg:text-4xl leading-tight font-bold">

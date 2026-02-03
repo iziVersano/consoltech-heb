@@ -364,7 +364,7 @@ All colors MUST be HSL. Premium blue gradients with neon accents.
   }
 
   .logo-consol {
-    @apply text-foreground;
+    @apply text-white;
   }
 
   .logo-tech {
@@ -376,9 +376,10 @@ All colors MUST be HSL. Premium blue gradients with neon accents.
 
   /* Navigation styling */
   .nav-glass {
-    backdrop-filter: blur(10px);
-    background: hsl(var(--card) / 0.8);
-    border: 1px solid hsl(var(--border) / 0.5);
+    backdrop-filter: blur(12px);
+    background: rgba(8, 8, 12, 0.97);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   }
 
   /* Product Slider Custom Styling */

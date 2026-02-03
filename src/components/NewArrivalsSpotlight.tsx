@@ -16,10 +16,9 @@ const NewArrivalsSpotlight = () => {
     queryFn: () => getProducts(lang),
   });
 
-  // Filter only New Arrivals - category name is now localized from API
+  // Filter only New Arrivals - match against English category name from API
   const newArrivals = products.filter((p: Product) =>
-    // Match against localized category name from translations
-    p.category === t('products.category.newArrivals')
+    p.category === 'New Arrivals'
   );
 
   // Auto-rotate every 5 seconds
@@ -51,6 +50,26 @@ const NewArrivalsSpotlight = () => {
   if (newArrivals.length === 0) return null;
 
   const currentProduct = newArrivals[currentIndex];
+
+  // Get translated title based on product ID
+  const getTranslatedTitle = (product: Product) => {
+    const titleMap: Record<number, string> = {
+      8: t('products.titles.metaQuest3', product.title),
+      9: t('products.titles.asusRog', product.title),
+      10: t('products.titles.nintendoSwitch2', product.title),
+    };
+    return titleMap[product.id] || product.title;
+  };
+
+  // Get translated description based on product ID
+  const getTranslatedDescription = (product: Product) => {
+    const descriptionMap: Record<number, string> = {
+      8: t('products.descriptions.metaQuest3', product.description),
+      9: t('products.descriptions.asusRog', product.description),
+      10: t('products.descriptions.nintendoSwitch2', product.description),
+    };
+    return descriptionMap[product.id] || product.description;
+  };
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -112,10 +131,10 @@ const NewArrivalsSpotlight = () => {
           {/* Product Info - Side Panel */}
           <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-gradient-to-br from-background/50 to-card/50">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              {currentProduct.title}
+              {getTranslatedTitle(currentProduct)}
             </h3>
             <p className="text-muted-foreground line-clamp-3">
-              {currentProduct.description}
+              {getTranslatedDescription(currentProduct)}
             </p>
 
             {/* Dots Indicator */}

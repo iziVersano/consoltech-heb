@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, MessageSquare, Gamepad2 } from 'lucide-react';
+import { Menu, X, MessageSquare, Gamepad2, House, Building2, ShoppingBag, Mail, Accessibility } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useI18n } from '@/hooks/I18nContext';
 
@@ -10,11 +10,11 @@ const Navigation = () => {
   const { lang, setLang, t } = useI18n();
 
   const navigation = [
-    { name: t('menu.home'), href: '/' },
-    { name: t('menu.about'), href: '/about' },
-    { name: t('menu.products'), href: '/products' },
-    { name: t('menu.contact'), href: '/contact' },
-    { name: t('menu.accessibility'), href: '/accessibility' },
+    { name: t('menu.home'), href: '/', icon: House },
+    { name: t('menu.about'), href: '/about', icon: Building2 },
+    { name: t('menu.products'), href: '/products', icon: ShoppingBag },
+    { name: t('menu.contact'), href: '/contact', icon: Mail },
+    { name: t('menu.accessibility'), href: '/accessibility', icon: Accessibility },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -55,21 +55,25 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8" role="menubar">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                role="menuitem"
-                aria-current={isActive(item.href) ? 'page' : undefined}
-                className={`transition-all duration-300 hover:text-accent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded px-1 ${
-                  isActive(item.href)
-                    ? 'text-accent border-b-2 border-accent'
-                    : 'text-foreground hover:text-accent'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  role="menuitem"
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={`flex items-center gap-2 py-1 font-semibold text-[15px] tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded ${
+                    isActive(item.href)
+                      ? 'text-accent border-b-2 border-accent'
+                      : 'text-white hover:text-accent'
+                  }`}
+                >
+                  <Icon className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden="true" />
+                  <span>{item.name}</span>
+                </Link>
+              );
+            })}
             <Button className="btn-nav">
               <MessageSquare className="h-4 w-4" aria-hidden="true" />
               <span>{t('menu.getQuote')}</span>
@@ -96,22 +100,26 @@ const Navigation = () => {
         {isOpen && (
           <div id="mobile-menu" className="md:hidden border-t border-border animate-fade-in" role="menu">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  role="menuitem"
-                  aria-current={isActive(item.href) ? 'page' : undefined}
-                  className={`block px-3 py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
-                    isActive(item.href)
-                      ? 'text-accent bg-accent/10'
-                      : 'text-foreground hover:text-accent hover:bg-accent/5'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    role="menuitem"
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    className={`flex items-center gap-3 px-4 py-3 font-semibold text-[15px] tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded ${
+                      isActive(item.href)
+                        ? 'text-accent'
+                        : 'text-white hover:text-accent'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden="true" />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
               <div className="px-3 pt-2">
                 <Button className="btn-nav w-full">
                   <MessageSquare className="h-4 w-4" aria-hidden="true" />

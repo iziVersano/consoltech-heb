@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useCallback, Rea
 import { translations, Language } from '@/i18n';
 
 const LANG_KEY = 'lang';
+const LANG_VERSION_KEY = 'lang_version';
+const CURRENT_LANG_VERSION = '2'; // Increment to reset all users to Hebrew
 
 interface I18nContextProps {
   lang: Language;
@@ -13,6 +15,13 @@ const I18nContext = createContext<I18nContextProps | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Language>(() => {
+    // Check if we need to reset to Hebrew (version changed)
+    const storedVersion = localStorage.getItem(LANG_VERSION_KEY);
+    if (storedVersion !== CURRENT_LANG_VERSION) {
+      localStorage.setItem(LANG_VERSION_KEY, CURRENT_LANG_VERSION);
+      localStorage.setItem(LANG_KEY, 'he');
+      return 'he';
+    }
     const stored = localStorage.getItem(LANG_KEY);
     return stored === 'en' ? 'en' : 'he';
   });
