@@ -1,9 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getProducts, getImageUrl, Product } from '@/lib/api';
+import { getProducts, Product } from '@/lib/api';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/hooks/I18nContext';
+
+import metaBright from '@/pages/images/bright/meta_bright.png';
+import asusBright from '@/pages/images/bright/asus_bright.png';
+import switchBright from '@/pages/images/bright/switch_bright.png';
+
+const BRIGHT_IMAGES: Record<number, string> = {
+  8: metaBright,
+  9: asusBright,
+  10: switchBright,
+};
 
 const NewArrivalsSpotlight = () => {
   const { lang, t } = useI18n();
@@ -93,44 +103,41 @@ const NewArrivalsSpotlight = () => {
         <div className="relative h-80 md:h-[450px]">
           {/* Product Image - Full Size with rounded corners */}
           <img
-            src={getImageUrl(currentProduct.imageUrl)}
+            src={BRIGHT_IMAGES[currentProduct.id]}
             alt={currentProduct.title}
             className="w-full h-full object-cover rounded-2xl transition-transform duration-700 hover:scale-105"
           />
 
-          {/* Gradient Overlay for Text */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-2xl" />
+          {/* Dots Indicator */}
+          {newArrivals.length > 1 && (
+            <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-3">
+              {newArrivals.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    goToSlide(index);
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? 'bg-primary w-8'
+                      : 'bg-white/40 hover:bg-white/60'
+                  }`}
+                  aria-label={`Go to product ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
 
-          {/* Product Info - Overlay at Bottom */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-lg">
+          {/* Frosted Glass Bar */}
+          <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 border-t border-white/10 rounded-b-2xl py-3 px-4 text-center">
+            <h3 className="text-lg md:text-xl font-bold text-white">
               {getTranslatedTitle(currentProduct)}
             </h3>
-            <p className="text-white/90 text-sm md:text-base max-w-2xl mx-auto line-clamp-2 drop-shadow-md">
+            <p className="text-white/80 text-xs md:text-sm max-w-2xl mx-auto line-clamp-1">
               {getTranslatedDescription(currentProduct)}
             </p>
-
-            {/* Dots Indicator */}
-            {newArrivals.length > 1 && (
-              <div className="flex justify-center gap-3 mt-4">
-                {newArrivals.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      goToSlide(index);
-                    }}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentIndex
-                        ? 'bg-primary w-8'
-                        : 'bg-white/40 hover:bg-white/60'
-                    }`}
-                    aria-label={`Go to product ${index + 1}`}
-                  />
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Navigation Arrows */}
@@ -192,7 +199,7 @@ const NewArrivalsSpotlight = () => {
               }`}
             >
               <img
-                src={getImageUrl(product.imageUrl)}
+                src={BRIGHT_IMAGES[product.id]}
                 alt={product.title}
                 className="w-full h-full object-contain bg-background/50 p-2"
               />
